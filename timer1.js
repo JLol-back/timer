@@ -1,25 +1,13 @@
 //Timer1.js Run in Node with Command Line Args
 
+const inputs = process.argv.slice(2);
 
-if (process.argv.length <= 2) {
-  return;
-};
+const cleanInputs = inputs.filter((item) => { 
+  return !isNaN(Number(item)) && item >= 0;
+});
 
-for (let i = 2; i < process.argv.length; i++) {
+for (let i = 0; i < cleanInputs.length; i++) {
  
-//console.log(typeof process.argv[i]);
-console.log(Number(process.argv[i]));
-//console.log(typeof test);
-//console.log(process.argv[i]);
-
-  if (Number(process.argv[i]) === NaN) {
-    continue;
-  }
-
-  if (Number(process.argv[i]) < 0) {
-    continue;
-  }
-
-  let delay = (process.argv[i]) * 1000;
+  let delay = (cleanInputs[i]) * 1000;
     setTimeout(() => { process.stdout.write('\x07')}, delay);
 };
